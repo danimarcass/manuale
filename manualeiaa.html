@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="logolspd.png">
+    <title>Regolamento Internal Affairs Agency (IAA)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --bg: #f5f7fb;
+            --card: #fff;
+            --accent: #0f62fe;
+            --muted: #6b7280;
+            --border: #e0e0e0
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            color: #111;
+            background: var(--bg)
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 32px auto;
+            padding: 24px
+        }
+
+ 
+        header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 24px;
+           
+            position: relative;
+        }
+
+        
+        .logo img {
+            width: 100%;
+            
+            height: 100%;
+            
+            object-fit: contain;
+           
+            padding: 5px;
+           
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            line-height: 1.2;
+        }
+
+       
+        nav {
+            margin-top: 18px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        button.tab {
+            background: transparent;
+            border: 1px solid transparent;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--muted);
+            transition: all 0.2s;
+        }
+
+        button.tab:hover {
+            background: rgba(15, 98, 254, 0.05);
+        }
+
+        button.tab.active {
+            background: var(--card);
+            color: var(--accent);
+            box-shadow: 0 4px 12px rgba(15, 98, 254, 0.1);
+            border: 1px solid rgba(15, 98, 254, 0.1)
+        }
+
+        
+        .card {
+            background: var(--card);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            margin-top: 24px;
+            min-height: 400px;
+        }
+
+ 
+        .hero {
+            display: flex;
+            gap: 32px;
+            align-items: center
+        }
+
+        .hero .cover {
+            flex: 1;
+            min-height: 280px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #e9eefc;
+            position: relative;
+        }
+
+        .hero .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            position: absolute;
+        }
+
+        .hero .intro {
+            flex: 1
+        }
+
+        .intro h2 {
+            margin-top: 0;
+            font-size: 28px;
+        }
+
+        .intro p {
+            color: var(--muted);
+            margin-top: 12px;
+            line-height: 1.6;
+        }
+
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px
+        }
+
+        .small-card {
+            background: #fafbff;
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid #f0f4ff
+        }
+
+        .small-card strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--accent);
+        }
+
+        .small-card i {
+            margin-right: 8px;
+            color: var(--accent);
+        }
+
+       
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background-color: #fafbff;
+            color: var(--muted);
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        tr:hover {
+            background-color: #f9fafb;
+        }
+
+       
+        ul.checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul.checklist li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        ul.checklist li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+     
+        .content-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .tag.high {
+            background: #ffecec;
+            color: #d32f2f;
+        }
+
+        .tag.med {
+            background: #fff8e1;
+            color: #fbc02d;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            margin-top: 32px;
+            border-top: 1px solid #eee;
+            padding-top: 16px;
+            color: var(--muted);
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        footer span i {
+            margin-right: 6px;
+        }
+
+        @media (max-width:768px) {
+            .hero {
+                flex-direction: column
+            }
+
+            .hero .intro {
+                order: 2
+            }
+
+            .hero .cover {
+                width: 100%;
+                min-height: 200px;
+                position: relative;
+            }
+        }
+
+        .article {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .article h4 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        .article h4 i {
+            margin-right: 8px;
+        }
+
+        .article p {
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        .article ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .article ul li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="logolspd.png" alt="LSPD Logo">
+            </div>
+            <div>
+                <h1>REGOLAMENTO<br>INTERNAL AFFAIRS AGENCY (IAA)</h1>
+            </div>
+        </header>
+
+        <nav>
+            <button class="tab active" data-target="home"><i class="fas fa-info-circle"></i> Introduzione</button>
+            <button class="tab" data-target="regolamento"><i class="fas fa-book"></i> Regolamento</button>
+        </nav>
+
+        <div class="card">
+
+            <section id="home" class="content-section active">
+                <div class="hero">
+                    <div class="cover">
+                        <img src="mappa.jpg" alt="Copertina">
+                    </div>
+                    <div class="intro">
+                        <h2><i class="fas fa-shield-alt"></i> Los Santos Police Department - Grau City Life</h2>
+                        <p>Comando Generale di Polizia - Reparto Affari Interni (IAA)</p>
+                        <p>Il presente regolamento disciplina il funzionamento del Reparto Affari Interni (IAA) all'interno del Los Santos Police Department.</p>
+
+                        <div class="grid">
+                            <div class="small-card"><strong><i class="fas fa-bullseye"></i> Scopo</strong>
+                                <div>Controllo interno, funzioni ispettive, investigative e disciplinari.</div>
+                            </div>
+                            <div class="small-card"><strong><i class="fas fa-list-check"></i> Priorità</strong>
+                                <div>1. Integrità istituzionale<br>2. Rispetto norme e protocolli<br>3. Prevenzione illeciti<br>4. Fiducia cittadinanza</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="regolamento" class="content-section">
+                <h2> Articoli del Regolamento</h3>
+                <p>Di seguito sono elencati tutti gli articoli del regolamento IAA.</p>
+
+                <div class="article">
+                    <h4><i class="fas fa-landmark"></i> Articolo 1 – Istituzione</h4>
+                    <p>È istituito, all'interno del Los Santos Police Department, il Reparto Affari Interni denominato Internal Affairs Agency (IAA).</p>
+                    <p>La IAA costituisce organo di controllo interno con funzioni ispettive, investigative e disciplinari.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-bullseye"></i> Articolo 2 – Finalità</h4>
+                    <p>La IAA persegue le seguenti finalità:</p>
+                    <ul class="checklist">
+                        <li>a) Tutelare l'integrità istituzionale;</li>
+                        <li>b) Garantire il rispetto delle norme e dei protocolli;</li>
+                        <li>c) Prevenire e reprimere condotte illecite;</li>
+                        <li>d) Salvaguardare la fiducia della cittadinanza.</li>
+                    </ul>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-toggle-on"></i> Articolo 2-bis – Attivazione del Reparto</h4>
+                    <p>Il Reparto Affari Interni non opera in modo permanente.</p>
+                    <p>L'attivazione formale avviene esclusivamente in presenza di segnalazione, denuncia, notizia di illecito o richiesta istituzionale.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-search"></i> Articolo 3 – Controlli Preventivi a Campione</h4>
+                    <p>Sono consentiti controlli preventivi a campione svolti dagli appartenenti in qualità di agenti ordinari.</p>
+                    <p>Qualora emergano elementi rilevanti, la IAA viene formalmente attivata.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-tasks"></i> Articolo 4 – Competenze</h4>
+                    <p>La IAA è competente a indagare su corruzione, abuso di autorità, uso illegittimo della forza, arresti irregolari, violazioni procedurali, conflitti di interesse, favoritismi o discriminazioni.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-unlock"></i> Articolo 5 – Poteri di Accesso</h4>
+                    <p>La IAA ha diritto illimitato di accesso a fascicoli investigativi, rapporti di servizio, materiale probatorio, archivi informatici e cartacei, indipendentemente dal reparto di origine.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-eye"></i> Articolo 5-bis – Supervisione Silenziosa</h4>
+                    <p>Tutti gli agenti IAA sono autorizzati ad accedere a qualsiasi reparto, ufficio, struttura operativa e archivio del Los Santos Police Department, nonché a qualsiasi documento o fascicolo, al fine di esercitare attività di supervisione interna.</p>
+                    <p>Tale attività può essere svolta senza preavviso, senza giustificazione immediata e in modalità discreta e non dichiarata.</p>
+                    <p>La supervisione silenziosa non costituisce attivazione formale dell'indagine, salvo emergano elementi rilevanti.</p>
+                    <p>Ogni ostacolo o limitazione costituisce grave violazione disciplinare.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-gavel"></i> Articolo 6 – Poteri Investigativi</h4>
+                    <p>Gli agenti IAA possono procedere ad arresto in caso di flagranza o ostruzione, disporre interrogatori, acquisire testimonianze, richiedere perquisizioni interne, operare sotto copertura e avviare indagini d'ufficio.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-ban"></i> Articolo 7 – Limitazioni Funzionali</h4>
+                    <p>Le seguenti limitazioni si applicano esclusivamente quando l'agente è in servizio per conto del Reparto Affari Interni (IAA).</p>
+                    <p>Durante il servizio IAA è fatto divieto di:</p>
+                    <ul class="checklist">
+                        <li>partecipare a inseguimenti;</li>
+                        <li>partecipare a operazioni armate;</li>
+                        <li>utilizzare armi, salvo nei casi di legittima difesa;</li>
+                        <li>interferire con operazioni non direttamente connesse a indagini interne.</li>
+                    </ul>
+                    <p>Fuori dal servizio IAA, l'agente opera secondo le normali competenze del proprio reparto di appartenenza.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-sitemap"></i> Articolo 8 – Struttura Organizzativa</h4>
+                    <p>La struttura è orizzontale.</p>
+                    <p>Tutti gli agenti hanno pari grado e autorità.</p>
+                    <p>Direttore del Reparto Affari Interni: Gabriel Allen.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-chain"></i> Articolo 9 – Linea Gerarchica</h4>
+                    <p>La IAA risponde esclusivamente al Capo della Polizia.</p>
+                    <p>Può indagare su tutti, ad eccezione del Capo della Polizia.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Articolo 10 – Segnalazioni</h4>
+                    <p>Fuori città: ticket tramite applicativo della polizia.</p>
+                    <p>In città: denuncia formale presso uffici IAA.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-clipboard-list"></i> Articolo 11 – Procedimento Investigativo</h4>
+                    <p>Apertura fascicolo, raccolta prove, audizioni, analisi, relazione finale, archiviazione o trasmissione.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-archive"></i> Articolo 12 – Archivio Riservato</h4>
+                    <p>Accessibile esclusivamente a IAA e Capo della Polizia.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-lock"></i> Articolo 13 – Riservatezza</h4>
+                    <p>Obbligo assoluto di segreto d'ufficio.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-handshake-slash"></i> Articolo 14 – Conflitti di Interesse</h4>
+                    <p>Divieto di indagare su soggetti con legami personali, familiari o professionali diretti.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-shield"></i> Articolo 15 – Diritto di Difesa</h4>
+                    <p>Ogni agente indagato ha diritto a essere informato, ascoltato e rappresentato.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-gavel"></i> Articolo 16 – Regime Sanzionatorio</h4>
+                    <p>Richiamo scritto, sospensione, retrocessione, licenziamento, trasmissione agli organi giudiziari.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-tshirt"></i> Articolo 17 – Vestiario</h4>
+                    <p>Gli agenti appartenenti alla IAA indossano esclusivamente il vestiario standard in dotazione alla Polizia.</p>
+                    <p>Non sono previste divise, segni distintivi o abbigliamenti specifici per il reparto IAA, al fine di garantire discrezione operativa e integrazione nei reparti.</p>
+                    <p>Eventuali eccezioni possono essere autorizzate esclusivamente dal Comando.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-user-plus"></i> Articolo 18 – Reclutamento</h4>
+                    <p>Gli agenti IAA sono selezionati esclusivamente dal Capo della Polizia e dal Direttore IAA.</p>
+                    <p>Possono essere nominati solo ufficiali o gradi superiori.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-users"></i> Articolo 19 – Collegialità Decisionale</h4>
+                    <p>Ogni decisione relativa a procedimenti disciplinari, archiviazioni, valutazioni o sanzioni viene assunta in forma collegiale.</p>
+                    <p>Tutti i membri della IAA sono tenuti a riunirsi per analizzare congiuntamente i fascicoli e deliberare in modo condiviso.</p>
+                    <p>Nessuna decisione disciplinare può essere adottata da un singolo agente in autonomia.</p>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-bullhorn"></i> Articolo 20 – Comunicazione delle Decisioni</h4>
+                    <p>Il Direttore IAA è l'unico referente autorizzato a:</p>
+                    <ul class="checklist">
+                        <li>informare il Capo della Polizia sulle decisioni assunte;</li>
+                        <li>comunicare ufficialmente all'agente interessato l'esito del procedimento e le eventuali sanzioni.</li>
+                    </ul>
+                </div>
+
+                <div class="article">
+                    <h4><i class="fas fa-play"></i> Articolo 21 – Entrata in Vigore</h4>
+                    <p>Il presente regolamento è vincolante per tutte le forze dell'ordine.</p>
+                </div>
+
+            </section>
+
+            <footer>
+                <span><i class="fas fa-tag"></i> Versione 1.0 - Creato da: Daniel Allen</span>
+                <span><i class="fas fa-calendar-alt"></i> Ultimo aggiornamento: 20/01/2026</span>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('button.tab').forEach(btn => {
+            btn.addEventListener('click', () => {
+                
+                document.querySelectorAll('button.tab').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+
+                
+                btn.classList.add('active');
+                const target = btn.dataset.target;
+                const section = document.getElementById(target);
+
+               
+                section.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
